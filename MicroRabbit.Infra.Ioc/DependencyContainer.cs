@@ -26,7 +26,6 @@ namespace MicroRabbit.Infra.Ioc
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<BankingDbContext>();
 
-
         }
     }
 }

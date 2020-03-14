@@ -8,7 +8,7 @@ namespace MicroRabbit.Banking.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class BankingController : ControllerBase
     {
         // GET api/values
         [HttpGet]
