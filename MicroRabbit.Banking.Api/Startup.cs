@@ -36,7 +36,9 @@ namespace MicroRabbit.Banking.Api
             }
             );
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddSwaggerGen(c =>
             {
@@ -45,7 +47,6 @@ namespace MicroRabbit.Banking.Api
             });
 
             services.AddMediatR(typeof(Startup));
-
 
             RegisterServices(services);
         }
@@ -67,16 +68,22 @@ namespace MicroRabbit.Banking.Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseSwagger();
             app.UseSwaggerUI(c=>
             {
-                c.SwaggerEndpoint("/swagger/api/swagger.json","Banking Microservice V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking Microservice V1");
             });
-
-
+       
+           
+            app.UseHttpsRedirection();
             app.UseMvc();
+
+
+            //app.UseRouting();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }
