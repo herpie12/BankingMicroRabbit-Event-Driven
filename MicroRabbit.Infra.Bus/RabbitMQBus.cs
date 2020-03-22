@@ -79,7 +79,6 @@ namespace MicroRabbit.Infra.Bus
 
             StartBasicConsume<T>();
 
-
         }
 
         private void StartBasicConsume<T>() where T : Event
