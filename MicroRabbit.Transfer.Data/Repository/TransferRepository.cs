@@ -1,9 +1,10 @@
-﻿using MicroRabbit.Banking.Domain.Interfaces;
+﻿using MicroRabbit.Transfer.Domain.Interfaces;
 using MicroRabbit.Transfer.Data.Context;
 using MicroRabbit.Transfer.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MicroRabbit.Transfer.Domain.EventHandlers;
 
 namespace MicroRabbit.Transfer.Data.Repository
 {
@@ -17,6 +18,15 @@ namespace MicroRabbit.Transfer.Data.Repository
         public IEnumerable<TransferLog> GetTransferlogs()
         {
             return _ctx.Transferlogs;
+        }
+
+        public void SaveTransferLog(TransferLog transferLog)
+        {
+            if (transferLog != null)
+            {
+                _ctx.Add(transferLog);
+                _ctx.SaveChanges();
+            }      
         }
     }
 }

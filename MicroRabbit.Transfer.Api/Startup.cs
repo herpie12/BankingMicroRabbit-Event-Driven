@@ -1,7 +1,10 @@
 ﻿
 using MediatR;
+using MicroRabbit.Domain.Core.Bus;
 using MicroRabbit.Infra.Ioc;
 using MicroRabbit.Transfer.Data.Context;
+using MicroRabbit.Transfer.Domain.EventHandlers;
+using MicroRabbit.Transfer.Domain.Events;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using System;
 
 namespace MicroRabbit.Transfer.Api
 {
@@ -79,8 +82,15 @@ namespace MicroRabbit.Transfer.Api
             });
 
 
-       
             app.UseMvc();
+
+            ConfigureEventBus(app);
+        }
+
+        private void ConfigureEventBus(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<TransferCreatedEvent, TransferEventHandler>();
         }
     }
 }

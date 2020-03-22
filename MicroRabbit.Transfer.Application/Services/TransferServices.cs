@@ -1,4 +1,4 @@
-﻿using MicroRabbit.Banking.Domain.Interfaces;
+﻿using MicroRabbit.Transfer.Domain.Interfaces;
 using MicroRabbit.Domain.Core.Bus;
 using MicroRabbit.Transfer.Application.Interfaces;
 
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroRabbit.Banking.Application.Services
+namespace MicroRabbit.Transfer.Application.Services
 {
     public class TransferServices : ITransferServices
     {
